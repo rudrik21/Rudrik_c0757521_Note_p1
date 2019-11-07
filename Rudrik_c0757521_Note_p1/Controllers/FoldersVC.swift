@@ -56,6 +56,7 @@ class FoldersVC: UIViewController {
         }))
         present(alert, animated: true, completion: nil)
         tvFolders.reloadData()
+        
     }
     
     /*
