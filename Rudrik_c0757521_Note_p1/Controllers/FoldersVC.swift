@@ -44,18 +44,19 @@ class FoldersVC: UIViewController {
         alert.addTextField { (txt) in
             txt.placeholder = "Name"
         }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (act) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
         alert.addAction(UIAlertAction(title: "Add Item", style: .default, handler: { (act) in
             if let name = alert.textFields?.first?.text{
                 if !name.isEmpty{
                     Folder.folders.append(Folder(folderName: name))
+                    self.tvFolders.reloadData()
                 }
             }
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (act) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
         present(alert, animated: true, completion: nil)
-        tvFolders.reloadData()
         
     }
     
