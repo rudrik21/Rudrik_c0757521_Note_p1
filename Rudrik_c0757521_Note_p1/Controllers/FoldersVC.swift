@@ -15,9 +15,8 @@ class FoldersVC: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationItem!
     
     //  MARK : VARIABLES
-    var sections : [String] = ["Folders"]
-   
-    
+    var sections : [String] = ["Folders", "Notes"]
+        
     //  MARK : viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +59,11 @@ class FoldersVC: UIViewController {
         
     }
     
+    @IBAction func onEditTV(_ sender: UIBarButtonItem) {
+        tvFolders.isEditing = (sender.title == "Edit" ? true : false)
+        sender.title = ((sender.title == "Edit") ? "Done" : "Edit")
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -89,31 +93,65 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     }
     
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Folder.folders.count
+        return (section == 0 ? Folder.folders.count : Note.notes.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell") as? FolderCell {
-            cell.lblFolderName.text = Folder.folders[indexPath.row].folderName
-            
+            if indexPath.section == 0{
+                cell.lblFolderName.text = Folder.folders[indexPath.row].folderName
+            }
+            if indexPath.section == 1{
+                cell.lblFolderName.text = Note.notes[indexPath.row].noteName
+            }
             return cell
         }
         
         return UITableViewCell()
     }
     
-//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        let cell = self.tableView.dequeueReusableCellWithIdentifier("CustomCell") as! CustomCellViewController
-//
-//        let position: CGPoint = cell.convertPoint(CGPointZero, toView: self.tableView)
-//        if let indexPath = self.tableView.indexPathForRowAtPoint(position)
-//        {
-//            let section = indexPath.section
-//            print("will display section: \(section)")
-//        }
-//    }
+    //  MARK : ON MOVE ROW
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let temp = Folder.folders[sourceIndexPath.row]
+        Folder.folders[sourceIndexPath.row] = Folder.folders[destinationIndexPath.row]
+        Folder.folders[destinationIndexPath.row] = temp
+        tvFolders.reloadData()
+    }
+    
+    //  MARK : ON DELETE ROW
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { _,_,_ in
+            if indexPath.section == 0{
+                Folder.folders.remove(at: indexPath.row)
+                print(Folder.folders)
+            }
+            if indexPath.section == 1{
+                Note.notes.remove(at: indexPath.row)
+                print(Note.notes)
+            }
+            
+            tableView.reloadData()
+        }
+        
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
     
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        if scrollView{

@@ -16,6 +16,7 @@
 		9B1216E223749E91006C21F5 /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B1216E023749E91006C21F5 /* FolderCell.xib */; };
 		9B1216E523749FEA006C21F5 /* FoldersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1216E423749FEA006C21F5 /* FoldersVC.swift */; };
 		9B1216E82374A774006C21F5 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1216E72374A774006C21F5 /* Folder.swift */; };
+		9B1216EA2374CE5D006C21F5 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1216E92374CE5D006C21F5 /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		9B1216E023749E91006C21F5 /* FolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
 		9B1216E423749FEA006C21F5 /* FoldersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersVC.swift; sourceTree = "<group>"; };
 		9B1216E72374A774006C21F5 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		9B1216E92374CE5D006C21F5 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				9B1216E72374A774006C21F5 /* Folder.swift */,
+				9B1216E92374CE5D006C21F5 /* Note.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				9B1216C823749310006C21F5 /* SceneDelegate.swift in Sources */,
 				9B1216E523749FEA006C21F5 /* FoldersVC.swift in Sources */,
 				9B1216E123749E91006C21F5 /* FolderCell.swift in Sources */,
+				9B1216EA2374CE5D006C21F5 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

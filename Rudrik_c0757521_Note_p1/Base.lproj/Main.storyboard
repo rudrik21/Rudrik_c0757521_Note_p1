@@ -59,8 +59,11 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="Szk-5v-a0R">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="fuO-2Q-cij">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="fuO-2Q-cij">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <action selector="onEditTV:" destination="wux-bC-WRI" id="OvY-YP-Lj4"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
