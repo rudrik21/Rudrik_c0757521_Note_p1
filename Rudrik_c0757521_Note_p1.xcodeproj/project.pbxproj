@@ -12,6 +12,10 @@
 		9B1216CD23749310006C21F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B1216CB23749310006C21F5 /* Main.storyboard */; };
 		9B1216CF23749318006C21F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B1216CE23749318006C21F5 /* Assets.xcassets */; };
 		9B1216D223749318006C21F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B1216D023749318006C21F5 /* LaunchScreen.storyboard */; };
+		9B1216E123749E91006C21F5 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1216DF23749E91006C21F5 /* FolderCell.swift */; };
+		9B1216E223749E91006C21F5 /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B1216E023749E91006C21F5 /* FolderCell.xib */; };
+		9B1216E523749FEA006C21F5 /* FoldersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1216E423749FEA006C21F5 /* FoldersVC.swift */; };
+		9B1216E82374A774006C21F5 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1216E72374A774006C21F5 /* Folder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		9B1216CE23749318006C21F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B1216D123749318006C21F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B1216D323749318006C21F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B1216DF23749E91006C21F5 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
+		9B1216E023749E91006C21F5 /* FolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
+		9B1216E423749FEA006C21F5 /* FoldersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersVC.swift; sourceTree = "<group>"; };
+		9B1216E72374A774006C21F5 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +68,36 @@
 				9B1216C723749310006C21F5 /* SceneDelegate.swift */,
 				9B1216CE23749318006C21F5 /* Assets.xcassets */,
 				9B1216CB23749310006C21F5 /* Main.storyboard */,
+				9B1216E62374A762006C21F5 /* Models */,
+				9B1216E323749FC1006C21F5 /* Controllers */,
+				9B1216DE23749E5C006C21F5 /* Cells */,
 			);
 			path = Rudrik_c0757521_Note_p1;
+			sourceTree = "<group>";
+		};
+		9B1216DE23749E5C006C21F5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9B1216DF23749E91006C21F5 /* FolderCell.swift */,
+				9B1216E023749E91006C21F5 /* FolderCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9B1216E323749FC1006C21F5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9B1216E423749FEA006C21F5 /* FoldersVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9B1216E62374A762006C21F5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9B1216E72374A774006C21F5 /* Folder.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +161,7 @@
 				9B1216D223749318006C21F5 /* LaunchScreen.storyboard in Resources */,
 				9B1216CF23749318006C21F5 /* Assets.xcassets in Resources */,
 				9B1216CD23749310006C21F5 /* Main.storyboard in Resources */,
+				9B1216E223749E91006C21F5 /* FolderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +173,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B1216C623749310006C21F5 /* AppDelegate.swift in Sources */,
+				9B1216E82374A774006C21F5 /* Folder.swift in Sources */,
 				9B1216C823749310006C21F5 /* SceneDelegate.swift in Sources */,
+				9B1216E523749FEA006C21F5 /* FoldersVC.swift in Sources */,
+				9B1216E123749E91006C21F5 /* FolderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
