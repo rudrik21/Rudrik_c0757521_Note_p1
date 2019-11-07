@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="itG-9q-0Fn">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="4S8-If-YNo">
+            <objects>
+                <navigationController id="itG-9q-0Fn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Qf-Ui-wyI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wux-bC-WRI" kind="relationship" relationship="rootViewController" id="5vs-oQ-CG5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MfU-5g-e73" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-532" y="78"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="M3b-c5-g4i">
+            <objects>
+                <viewController id="wux-bC-WRI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m0t-3I-8dL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQY-gb-VpE">
+                                <rect key="frame" x="12" y="56" width="84.333333333333329" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xiv-F4-w0d">
+                                <rect key="frame" x="0.0" y="638" width="414" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items/>
+                            </tabBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmr-p8-40v">
+                                <rect key="frame" x="315" y="646" width="91" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="New Folder">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jnw-23-iuW">
+                                <rect key="frame" x="0.0" y="94" width="414" height="544"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Jnw-23-iuW" firstAttribute="trailing" secondItem="FQJ-m1-5BD" secondAttribute="trailing" id="18c-cw-CzA"/>
+                            <constraint firstItem="xiv-F4-w0d" firstAttribute="leading" secondItem="FQJ-m1-5BD" secondAttribute="leading" id="7OD-hh-4b4"/>
+                            <constraint firstItem="Jnw-23-iuW" firstAttribute="top" secondItem="cQY-gb-VpE" secondAttribute="bottom" constant="8" id="9Ld-F9-nHM"/>
+                            <constraint firstItem="FQJ-m1-5BD" firstAttribute="trailing" secondItem="lmr-p8-40v" secondAttribute="trailing" constant="8" id="IGe-Ue-U4n"/>
+                            <constraint firstItem="FQJ-m1-5BD" firstAttribute="bottom" secondItem="xiv-F4-w0d" secondAttribute="bottom" id="Rra-k3-Mgr"/>
+                            <constraint firstItem="Jnw-23-iuW" firstAttribute="leading" secondItem="FQJ-m1-5BD" secondAttribute="leading" id="TWq-TR-thg"/>
+                            <constraint firstItem="cQY-gb-VpE" firstAttribute="top" secondItem="FQJ-m1-5BD" secondAttribute="top" constant="12" id="XnT-dJ-3fF"/>
+                            <constraint firstItem="cQY-gb-VpE" firstAttribute="leading" secondItem="FQJ-m1-5BD" secondAttribute="leading" constant="12" id="YbP-iW-GxL"/>
+                            <constraint firstItem="xiv-F4-w0d" firstAttribute="trailing" secondItem="FQJ-m1-5BD" secondAttribute="trailing" id="jFt-a7-83z"/>
+                            <constraint firstItem="xiv-F4-w0d" firstAttribute="top" secondItem="Jnw-23-iuW" secondAttribute="bottom" id="qR2-Bm-Ago"/>
+                            <constraint firstItem="FQJ-m1-5BD" firstAttribute="bottom" secondItem="lmr-p8-40v" secondAttribute="bottom" constant="8" id="yBj-t4-iKP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FQJ-m1-5BD"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="WYV-yC-jbS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="LDd-3q-NPZ">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z49-Ca-9Jd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140.57971014492756" y="76.630434782608702"/>
+        </scene>
+    </scenes>
+</document>
