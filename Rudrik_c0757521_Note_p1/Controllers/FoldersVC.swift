@@ -50,7 +50,15 @@ class FoldersVC: UIViewController {
         alert.addAction(UIAlertAction(title: "Add Item", style: .default, handler: { (act) in
             if let name = alert.textFields?.first?.text{
                 if !name.isEmpty{
-                    Folder.folders.append(Folder(folderName: name))
+                    switch self.navigationBar.title {
+                    case self.sections[0]:
+                        Folder.folders.append(Folder(folderName: name))
+                    case self.sections[1]:
+                        Note.notes.append(Note(noteName: name))
+                    default:
+                        return
+                    }
+                    
                     self.tvFolders.reloadData()
                 }
             }
@@ -79,25 +87,29 @@ class FoldersVC: UIViewController {
 
 extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     
+    //    MARK : Sections
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.text = "\t"+sections[section]
-        label.font = UIFont(name: "Kailasa", size: 20)
-//        label.drawText(in: CGRect(x: 10, y: 10, width: 50, height: 40))
-        
-        return label
+        navigationBar.title = sections[section]
+        return nil
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        return sections[section]
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (section == 0 ? Folder.folders.count : Note.notes.count)
     }
     
+        
+    //  MARK : Cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell") as? FolderCell {
             if indexPath.section == 0{
                 cell.lblFolderName.text = Folder.folders[indexPath.row].folderName
@@ -128,6 +140,7 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
         return true
     }
     
+    //  MARK : Swipe to delete
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { _,_,_ in
             if indexPath.section == 0{
@@ -145,6 +158,7 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
+    //  MARK : Editing style
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
@@ -152,13 +166,5 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if scrollView{
-//            navigationBar.title = sections[0]
-//        }else{
-//            navigationBar.title = ""
-//        }
-//    }
     
 }
