@@ -23,8 +23,8 @@
                             <constraint firstAttribute="width" constant="36" id="dLb-lr-YKI"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ika-YL-heJ">
-                        <rect key="frame" x="56" y="13" width="256" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ika-YL-heJ">
+                        <rect key="frame" x="56" y="22" width="256" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -36,6 +36,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="ika-YL-heJ" secondAttribute="trailing" constant="-8" id="uHH-1x-230"/>
                     <constraint firstItem="Plv-g3-gxd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="wDT-J2-fMQ"/>
                     <constraint firstItem="ika-YL-heJ" firstAttribute="leading" secondItem="Plv-g3-gxd" secondAttribute="trailing" constant="8" id="xn3-E9-VFL"/>
+                    <constraint firstItem="ika-YL-heJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zXc-0c-oug"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
