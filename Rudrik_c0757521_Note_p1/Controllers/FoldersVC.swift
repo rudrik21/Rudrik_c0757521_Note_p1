@@ -15,7 +15,7 @@ class FoldersVC: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationItem!
     
     //  MARK : VARIABLES
-    var sections : [String] = ["Folders", "Notes"]
+    var sections : [String] = ["Folders"]
         
     //  MARK : viewDidLoad
     override func viewDidLoad() {
@@ -27,6 +27,8 @@ class FoldersVC: UIViewController {
     func start() {
         tvFolders.delegate = self
         tvFolders.dataSource = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationBar.title = sections[0]
         initFolderCell()
     }
 
@@ -63,6 +65,7 @@ class FoldersVC: UIViewController {
                 }
             }
         }))
+        alert.view.tintColor = .black
         present(alert, animated: true, completion: nil)
         
     }
@@ -92,9 +95,11 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
         sections.count
     }
     
+    /*
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
+    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (section == 0 ? Folder.folders.count : Note.notes.count)
@@ -164,12 +169,21 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     }
   
     //  MARK : scrollViewDidScroll
+    /*
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentSection = (tvFolders.visibleCells.first as! FolderCell).tag
         navigationBar.title = sections[currentSection]
         tvFolders.headerView(forSection: currentSection)?.isHidden = true
         
+        sections.filter { (str) -> Bool in
+            return (str != sections[currentSection])
+        }.forEach { (sectionTitle) in
+            tvFolders.headerView(forSection: sections.firstIndex(of: sectionTitle)!)?.isHidden = false
+        }
     }
+     */
     
 }
 
+
+//  'Note Section' has been added to check feasibility of app, it's optional!
