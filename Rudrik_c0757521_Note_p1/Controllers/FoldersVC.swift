@@ -92,11 +92,6 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
         sections.count
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        navigationBar.title = sections[section]
-        return nil
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
@@ -104,18 +99,20 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (section == 0 ? Folder.folders.count : Note.notes.count)
     }
-    
         
     //  MARK : Cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell") as? FolderCell {
             if indexPath.section == 0{
+                cell.tag = indexPath.section
                 cell.lblFolderName.text = Folder.folders[indexPath.row].folderName
             }
             if indexPath.section == 1{
+                cell.tag = indexPath.section
                 cell.lblFolderName.text = Note.notes[indexPath.row].noteName
             }
+            
             return cell
         }
         
@@ -144,11 +141,11 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
         let delete = UIContextualAction(style: .destructive, title: "Delete") { _,_,_ in
             if indexPath.section == 0{
                 Folder.folders.remove(at: indexPath.row)
-                print(Folder.folders)
+//                print(Folder.folders)
             }
             if indexPath.section == 1{
                 Note.notes.remove(at: indexPath.row)
-                print(Note.notes)
+//                print(Note.notes)
             }
             
             tableView.reloadData()
@@ -165,5 +162,14 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
+  
+    //  MARK : scrollViewDidScroll
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentSection = (tvFolders.visibleCells.first as! FolderCell).tag
+        navigationBar.title = sections[currentSection]
+        tvFolders.headerView(forSection: currentSection)?.isHidden = true
+        
+    }
     
 }
+
