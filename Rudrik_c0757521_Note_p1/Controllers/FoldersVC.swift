@@ -23,7 +23,7 @@ class FoldersVC: UIViewController {
         start()
     }
     
-    //  MARK : start()
+    //  MARK : INITIALIZATION
     func start() {
         tvFolders.delegate = self
         tvFolders.dataSource = self
@@ -31,21 +31,24 @@ class FoldersVC: UIViewController {
         self.navigationBar.title = sections[0]
         initFolderCell()
     }
-
+    
+    //  MARK : REGISTERING CELL WITH TABLE VIEW
     func initFolderCell() {
         tvFolders.register(UINib(nibName: "FolderCell", bundle: nil), forCellReuseIdentifier: "FolderCell")
     }
     
+    //  MARK : ON CREATE NEW FOLDER
     @IBAction func onAddNewFolder(_ sender: UIBarButtonItem) {
         createNewFolder(title: "New Folder", "Enter a name for this folder.")
     }
     
+    //  MARK : WHILE CREATING NEW FOLDER
     func createNewFolder(title : String, _ msg : String? = nil) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alert.addTextField { (txt) in
             txt.placeholder = "Name"
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (act) in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (act) in
             alert.dismiss(animated: true, completion: nil)
         }))
         
@@ -54,9 +57,13 @@ class FoldersVC: UIViewController {
                 if !name.isEmpty{
                     switch self.navigationBar.title {
                     case self.sections[0]:
-                        Folder.folders.append(Folder(folderName: name))
-                    case self.sections[1]:
-                        Note.notes.append(Note(noteName: name))
+                        if (Folder.folders.filter { (f) -> Bool in
+                            f.folderName == name
+                        }.isEmpty) {
+                            Folder.folders.append(Folder(folderName: name))
+                        }else{
+                            showPopup(vc: self, title: "Name Taken", msg: "Please choose a different name", btnText: "OK")
+                        }
                     default:
                         return
                     }
@@ -65,11 +72,13 @@ class FoldersVC: UIViewController {
                 }
             }
         }))
-        alert.view.tintColor = .black
-        present(alert, animated: true, completion: nil)
         
+        alert.actions[0].setValue(#colorLiteral(red: 0.127715386, green: 0.1686877555, blue: 0.2190790727, alpha: 0.9254236356), forKey: "titleTextColor")
+        alert.actions[1].setValue(UIColor.black, forKey: "titleTextColor")
+        present(alert, animated: true, completion: nil)
     }
     
+    //  MARK : ON MOVING TABLE ROWS
     @IBAction func onEditTV(_ sender: UIBarButtonItem) {
         tvFolders.isEditing = (sender.title == "Edit" ? true : false)
         sender.title = ((sender.title == "Edit") ? "Done" : "Edit")
@@ -102,7 +111,7 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (section == 0 ? Folder.folders.count : Note.notes.count)
+        return Folder.folders.count
     }
         
     //  MARK : Cells
@@ -112,10 +121,6 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
             if indexPath.section == 0{
                 cell.tag = indexPath.section
                 cell.lblFolderName.text = Folder.folders[indexPath.row].folderName
-            }
-            if indexPath.section == 1{
-                cell.tag = indexPath.section
-                cell.lblFolderName.text = Note.notes[indexPath.row].noteName
             }
             
             return cell
@@ -143,19 +148,15 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     
     //  MARK : Swipe to delete
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { _,_,_ in
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (act, v, _) in
             if indexPath.section == 0{
                 Folder.folders.remove(at: indexPath.row)
-//                print(Folder.folders)
+                //   print(Folder.folders)
             }
-            if indexPath.section == 1{
-                Note.notes.remove(at: indexPath.row)
-//                print(Note.notes)
-            }
-            
+                        
             tableView.reloadData()
         }
-        
+        delete.backgroundColor = #colorLiteral(red: 0.127715386, green: 0.1686877555, blue: 0.2190790727, alpha: 0.9254236356)
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
@@ -167,23 +168,5 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
-  
-    //  MARK : scrollViewDidScroll
-    /*
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentSection = (tvFolders.visibleCells.first as! FolderCell).tag
-        navigationBar.title = sections[currentSection]
-        tvFolders.headerView(forSection: currentSection)?.isHidden = true
-        
-        sections.filter { (str) -> Bool in
-            return (str != sections[currentSection])
-        }.forEach { (sectionTitle) in
-            tvFolders.headerView(forSection: sections.firstIndex(of: sectionTitle)!)?.isHidden = false
-        }
-    }
-     */
     
 }
-
-
-//  'Note Section' has been added to check feasibility of app, it's optional!

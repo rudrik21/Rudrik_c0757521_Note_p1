@@ -14,10 +14,19 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Qf-Ui-wyI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.12771538599999999" green="0.16868775550000001" blue="0.21907907269999999" alpha="0.92542363559999996" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.52789013262761342" green="0.69724255177002437" blue="0.90552661151606217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.12771538599999999" green="0.16868775550000001" blue="0.21907907269999999" alpha="0.92542363559999996" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.57865020310000004" green="0.77011698429999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Uch-ls-gBY">
                         <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.12771538599695489" green="0.16868775551754348" blue="0.2190790726559585" alpha="0.92542363556338025" colorSpace="custom" customColorSpace="sRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="wux-bC-WRI" kind="relationship" relationship="rootViewController" id="5vs-oQ-CG5"/>
@@ -37,7 +46,9 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jnw-23-iuW">
                                 <rect key="frame" x="0.0" y="44" width="414" height="643"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="0.12771538599999999" green="0.16868775550000001" blue="0.21907907269999999" alpha="0.92542363559999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.57865020310000004" green="0.77011698429999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.12771538599999999" green="0.16868775550000001" blue="0.21907907269999999" alpha="0.92542363559999996" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -50,9 +61,11 @@
                         <viewLayoutGuide key="safeArea" id="FQJ-m1-5BD"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Sbt-t8-a0S"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Sbt-t8-a0S">
+                            <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                         <barButtonItem title="New Folder" id="XBG-Nw-Jgn">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.57865020311156357" green="0.7701169843191743" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="onAddNewFolder:" destination="wux-bC-WRI" id="NP0-1f-eXm"/>
                             </connections>
@@ -60,7 +73,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="Szk-5v-a0R">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="fuO-2Q-cij">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="onEditTV:" destination="wux-bC-WRI" id="OvY-YP-Lj4"/>
                             </connections>
