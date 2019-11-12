@@ -10,8 +10,9 @@ import Foundation
 
 struct Folder : CustomStringConvertible {
     var folderName : String
-    var notes : [Note] = [Note(noteName: "hello guys, chai pee lo!")]
-    static var folders : [Folder] = [Folder(folderName: "asd")]
+    var notes : [Note] = []
+    
+    static var folders : [Folder] = []
     
     var description: String{
         return folderName
@@ -26,15 +27,15 @@ struct Folder : CustomStringConvertible {
     func indexOfNote(note: Note) -> Int? {
         return notes.firstIndex { (n) -> Bool in
             note.noteName == n.noteName
-        }!
+        }
     }
     
     mutating func addNote(note : Note) {
-        notes.append(note)
+        Folder.folders[self.indexOfFolder()!].notes.append(note)
     }
     
     mutating func updateNote(note: Note, index : Int) {
-        notes[index] = note
+        Folder.folders[self.indexOfFolder()!].notes[index] = note
     }
     
     func moveNote(note: Note, from: Int, to: Int) {
@@ -43,6 +44,6 @@ struct Folder : CustomStringConvertible {
     }
     
     mutating func removeNote(index: Int) {
-        notes.remove(at: index)
+        Folder.folders[self.indexOfFolder()!].notes.remove(at: index)
     }
 }

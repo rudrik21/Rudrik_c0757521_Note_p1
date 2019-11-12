@@ -91,17 +91,17 @@ class FoldersVC: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell : FolderCell = sender as? FolderCell {
-            if let folder : Folder = Folder.folders[tvFolders.indexPath(for: cell)!.row] {
+            let folder = Folder.folders[tvFolders.indexPath(for: cell)!.row]
                 if let notesVC = segue.destination as? NotesVC {
                     notesVC.delegate = self
                     notesVC.currentFolder = folder
                 }
-            }
-            
         }
     }
     
-
+    func updateTable() {
+        tvFolders.reloadData()
+    }
 }
 
     //  MARK: - TABLE VIEW DELEGATE & DATASOURCES
