@@ -10,39 +10,41 @@ import UIKit
 
 class FoldersVC: UIViewController {
 
-    //  MARK : OUTLETS
+    //  MARK: OUTLETS
     @IBOutlet weak var tvFolders: UITableView!
     @IBOutlet weak var navigationBar: UINavigationItem!
     
-    //  MARK : VARIABLES
+    //  MARK: VARIABLES
     var sections : [String] = ["Folders"]
         
-    //  MARK : viewDidLoad
+    //  MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         start()
     }
     
-    //  MARK : INITIALIZATION
+    //  MARK: INITIALIZATION
     func start() {
         tvFolders.delegate = self
         tvFolders.dataSource = self
+        tvFolders.backgroundColor = #colorLiteral(red: 0.127715386, green: 0.1686877555, blue: 0.2190790727, alpha: 0.9254236356)
+        tvFolders.rowHeight = 50
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationBar.title = sections[0]
         initFolderCell()
     }
     
-    //  MARK : REGISTERING CELL WITH TABLE VIEW
+    //  MARK: REGISTERING CELL WITH TABLE VIEW
     func initFolderCell() {
-        tvFolders.register(UINib(nibName: "FolderCell", bundle: nil), forCellReuseIdentifier: "FolderCell")
+//        tvFolders.register(UINib(nibName: "FolderCell", bundle: nil), forCellReuseIdentifier: "FolderCell")
     }
     
-    //  MARK : ON CREATE NEW FOLDER
+    //  MARK: ON CREATE NEW FOLDER
     @IBAction func onAddNewFolder(_ sender: UIBarButtonItem) {
         createNewFolder(title: "New Folder", "Enter a name for this folder.")
     }
     
-    //  MARK : WHILE CREATING NEW FOLDER
+    //  MARK: WHILE CREATING NEW FOLDER
     func createNewFolder(title : String, _ msg : String? = nil) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alert.addTextField { (txt) in
@@ -84,22 +86,28 @@ class FoldersVC: UIViewController {
         sender.title = ((sender.title == "Edit") ? "Done" : "Edit")
     }
     
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let cell : FolderCell = sender as? FolderCell {
+            if let folder : Folder = Folder.folders[tvFolders.indexPath(for: cell)!.row] {
+                if let notesVC = segue.destination as? NotesVC {
+                    notesVC.delegate = self
+                    notesVC.currentFolder = folder
+                }
+            }
+            
+        }
     }
-    */
+    
 
 }
 
-
+    //  MARK: - TABLE VIEW DELEGATE & DATASOURCES
 extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     
-    //    MARK : Sections
+    //    MARK: Sections
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
     }
@@ -114,13 +122,16 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
         return Folder.folders.count
     }
         
-    //  MARK : Cells
+    //  MARK: Cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell") as? FolderCell {
+            let folder : Folder = Folder.folders[indexPath.row]
+            
             if indexPath.section == 0{
                 cell.tag = indexPath.section
-                cell.lblFolderName.text = Folder.folders[indexPath.row].folderName
+                cell.textLabel?.text = folder.folderName
+                cell.detailTextLabel?.text = String(folder.notes.count)
             }
             
             return cell
@@ -129,7 +140,7 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
         return UITableViewCell()
     }
     
-    //  MARK : ON MOVE ROW
+    //  MARK: ON MOVE ROW
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -141,12 +152,12 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
         tvFolders.reloadData()
     }
     
-    //  MARK : ON DELETE ROW
+    //  MARK: ON DELETE ROW
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    //  MARK : Swipe to delete
+    //  MARK: Swipe to delete
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (act, v, _) in
             if indexPath.section == 0{
@@ -160,7 +171,7 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
-    //  MARK : Editing style
+    //  MARK: Editing style
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
