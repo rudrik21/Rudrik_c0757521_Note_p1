@@ -17,7 +17,7 @@ class FolderCell: UITableViewCell {
         self.tintColor = #colorLiteral(red: 0.127715386, green: 0.1686877555, blue: 0.2190790727, alpha: 0.9254236356)
         self.accessoryView?.backgroundColor = #colorLiteral(red: 0.6439564258, green: 0.8479013801, blue: 0.9977299744, alpha: 1)
     }
-
+     
     /*
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

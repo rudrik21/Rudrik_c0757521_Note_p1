@@ -11,8 +11,8 @@
         <scene sceneID="4S8-If-YNo">
             <objects>
                 <navigationController toolbarHidden="NO" id="itG-9q-0Fn" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorTransitionMaskImage="arrow.left" catalog="system" id="8Qf-Ui-wyI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="8Qf-Ui-wyI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.12771538599999999" green="0.16868775550000001" blue="0.21907907269999999" alpha="0.92542363559999996" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="-532" y="78"/>
         </scene>
-        <!--FoldersVC-->
+        <!--Folders-->
         <scene sceneID="M3b-c5-g4i">
             <objects>
                 <viewController id="wux-bC-WRI" customClass="FoldersVC" customModule="Rudrik_c0757521_Note_p1" customModuleProvider="target" sceneMemberID="viewController">
@@ -100,14 +100,14 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Sbt-t8-a0S">
                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
-                        <barButtonItem title="New Folder" id="XBG-Nw-Jgn">
+                        <barButtonItem image="folder.fill.badge.plus" catalog="system" id="XBG-Nw-Jgn">
                             <color key="tintColor" red="0.57865020311156357" green="0.7701169843191743" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="onAddNewFolder:" destination="wux-bC-WRI" id="NP0-1f-eXm"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="Szk-5v-a0R">
+                    <navigationItem key="navigationItem" title="Folders" id="Szk-5v-a0R">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="fuO-2Q-cij">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -134,23 +134,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <userGuides>
-                            <userLayoutGuide location="363" affinity="minY"/>
-                            <userLayoutGuide location="366" affinity="minY"/>
-                            <userLayoutGuide location="366" affinity="minY"/>
+                            <userLayoutGuide location="362" affinity="minY"/>
+                            <userLayoutGuide location="367" affinity="minY"/>
+                            <userLayoutGuide location="364" affinity="minY"/>
                             <userLayoutGuide location="368" affinity="minY"/>
                         </userGuides>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cbd-lZ-crs">
-                                <rect key="frame" x="0.0" y="44" width="414" height="648"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cbd-lZ-crs">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="separatorColor" red="0.59897691009999998" green="0.73760157820000005" blue="0.91767090559999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="NoteCell" editingAccessoryType="checkmark" id="J06-JD-djw" customClass="NoteCell" customModule="Rudrik_c0757521_Note_p1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J06-JD-djw" id="Mlm-cc-cEc">
-                                            <rect key="frame" x="0.0" y="0.0" width="370" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.59897691009999998" green="0.73760157820000005" blue="0.91767090559999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -175,7 +174,6 @@
                                     <barButtonItem image="tray.and.arrow.down" catalog="system" id="Gey-zV-7NE">
                                         <color key="tintColor" red="0.59897691009999998" green="0.73760157820000005" blue="0.91767090559999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
-                                            <action selector="onMoveNote:" destination="wdf-ck-PIw" id="YBh-K0-Lkj"/>
                                             <segue destination="udZ-dC-aEs" kind="presentation" id="GVc-3i-PcC"/>
                                         </connections>
                                     </barButtonItem>
@@ -192,6 +190,12 @@
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.12771538599999999" green="0.16868775550000001" blue="0.21907907269999999" alpha="0.92542363559999996" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gT0-P1-EJ4" firstAttribute="top" secondItem="Cbd-lZ-crs" secondAttribute="bottom" id="RER-hy-VlZ"/>
+                            <constraint firstItem="Cbd-lZ-crs" firstAttribute="top" secondItem="jXG-wy-ZqU" secondAttribute="top" id="bmA-R2-DDT"/>
+                            <constraint firstItem="Cbd-lZ-crs" firstAttribute="leading" secondItem="gT0-P1-EJ4" secondAttribute="leading" id="dB5-L0-aen"/>
+                            <constraint firstItem="Cbd-lZ-crs" firstAttribute="trailing" secondItem="gT0-P1-EJ4" secondAttribute="trailing" id="z85-Gx-h7x"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4PC-7r-9jY"/>
                     </view>
                     <toolbarItems/>
@@ -224,7 +228,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move to Folders...." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlw-ci-4L1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move to Folders...." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlw-ci-4L1">
                                 <rect key="frame" x="20" y="15" width="302" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="m4h-ch-JEf"/>
@@ -241,6 +245,9 @@
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="onCancel:" destination="udZ-dC-aEs" eventType="touchUpInside" id="sis-nH-vHl"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L1U-x0-4L9">
                                 <rect key="frame" x="0.0" y="74" width="414" height="642"/>
@@ -295,6 +302,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q2K-6x-3se"/>
                     </view>
+                    <connections>
+                        <outlet property="tvListFolders" destination="L1U-x0-4L9" id="E0a-Gw-bAY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNY-P5-wpa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -311,6 +321,9 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ebS-Ag-i0J">
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <color key="backgroundColor" red="0.12771538599999999" green="0.16868775550000001" blue="0.21907907269999999" alpha="0.92542363559999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ebS-Ag-i0J" secondAttribute="height" multiplier="207:346" id="5Bk-6n-hOw"/>
+                                </constraints>
                                 <color key="textColor" red="0.59897691009999998" green="0.73760157820000005" blue="0.91767090559999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -318,10 +331,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.12771538599999999" green="0.16868775550000001" blue="0.21907907269999999" alpha="0.92542363559999996" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ebS-Ag-i0J" firstAttribute="top" secondItem="izL-Km-8jB" secondAttribute="top" id="9Ot-oU-Fz7"/>
-                            <constraint firstAttribute="bottom" secondItem="ebS-Ag-i0J" secondAttribute="bottom" id="Hm7-Y4-aEQ"/>
-                            <constraint firstItem="ebS-Ag-i0J" firstAttribute="leading" secondItem="izL-Km-8jB" secondAttribute="leading" id="iqY-WK-mTz"/>
-                            <constraint firstItem="ebS-Ag-i0J" firstAttribute="trailing" secondItem="izL-Km-8jB" secondAttribute="trailing" id="q9d-0b-wBI"/>
+                            <constraint firstItem="ebS-Ag-i0J" firstAttribute="top" secondItem="izL-Km-8jB" secondAttribute="top" id="VuK-uu-bgP"/>
+                            <constraint firstItem="ebS-Ag-i0J" firstAttribute="trailing" secondItem="izL-Km-8jB" secondAttribute="trailing" id="atG-fz-vCc"/>
+                            <constraint firstAttribute="bottom" secondItem="ebS-Ag-i0J" secondAttribute="bottom" id="dAn-LG-esc"/>
+                            <constraint firstItem="ebS-Ag-i0J" firstAttribute="leading" secondItem="izL-Km-8jB" secondAttribute="leading" id="deD-e7-7UQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="izL-Km-8jB"/>
                     </view>
@@ -337,9 +350,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="ellipsis" catalog="system" width="64" height="18"/>
         <image name="folder-icon" width="512" height="512"/>
+        <image name="folder.fill.badge.plus" catalog="system" width="64" height="42"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="64" height="40"/>
         <image name="trash" catalog="system" width="60" height="64"/>
         <image name="tray.and.arrow.down" catalog="system" width="64" height="54"/>

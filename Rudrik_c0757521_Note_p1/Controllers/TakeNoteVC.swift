@@ -26,7 +26,7 @@ class TakeNoteVC: UIViewController {
             navTitle = "New Note"
         }
         navBar.title = navTitle
-        
+        txtNote.becomeFirstResponder()
         txtNote.text = currentNote?.noteName
         // Do any additional setup after loading the view.
     }
@@ -42,20 +42,22 @@ class TakeNoteVC: UIViewController {
     */
     
     override func viewDidDisappear(_ animated: Bool) {
-        let newNote = Note(noteName: txtNote.text)
+        
         if let currentFolder = delegate?.currentFolder{
-            if let note = currentNote{
-                if let index = currentFolder.indexOfNote(note: note) {
-                    delegate?.currentFolder?.updateNote(note: newNote, index: index)
-                }
-            }else{
-                if !newNote.noteName.isEmpty{
-                    delegate?.currentFolder?.addNote(note: newNote)
+            if !txtNote.text.isEmpty{
+                if let note = currentNote {
+                    if currentFolder.notes.contains(where: { (n) -> Bool in
+                        n.index == note.index
+                    }){
+                        currentNote!.noteName = txtNote.text
+                        delegate?.currentFolder?.updateNote(note: currentNote!, index: currentNote!.index!)
+                    }
+                }else{
+                    let index = delegate?.currentFolder?.notes.count
+                    delegate?.currentFolder?.addNote(note: Note(noteName: txtNote.text, index: index))
                 }
             }
         }
-        
-        
         delegate?.updateTable()
     }
 

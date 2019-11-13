@@ -10,6 +10,7 @@ import Foundation
 
 struct Folder : CustomStringConvertible {
     var folderName : String
+    var index: Int
     var notes : [Note] = []
     
     static var folders : [Folder] = []
@@ -18,32 +19,43 @@ struct Folder : CustomStringConvertible {
         return folderName
     }
     
-    func indexOfFolder() -> Int? {
-        return Folder.folders.firstIndex { (f) -> Bool in
-            self.folderName == f.folderName
-        }
-    }
-    
-    func indexOfNote(note: Note) -> Int? {
-        return notes.firstIndex { (n) -> Bool in
-            note.noteName == n.noteName
-        }
-    }
-    
     mutating func addNote(note : Note) {
-        Folder.folders[self.indexOfFolder()!].notes.append(note)
+        notes.append(note)
+        updateCurrent()
     }
     
     mutating func updateNote(note: Note, index : Int) {
-        Folder.folders[self.indexOfFolder()!].notes[index] = note
+        let i = self.notes.filter { (n) -> Bool in
+            n.index == note.index
+            }.first?.index
+        self.notes[i!] = note
+        updateCurrent()
     }
     
-    func moveNote(note: Note, from: Int, to: Int) {
-        Folder.folders.remove(at: from)
-        Folder.folders[to].addNote(note: note)
+    mutating func moveNote(notes: [Note], toFolder: Folder) {
+        notes.forEach { (note) in
+            Folder.folders[toFolder.index].notes.append(Note(noteName: note.noteName, index: Folder.folders[toFolder.index].notes.count))
+        }
+        
+        for n in notes{
+            self.removeNote(note: n)
+        }
+        Folder.folders[self.index] = self
     }
     
-    mutating func removeNote(index: Int) {
-        Folder.folders[self.indexOfFolder()!].notes.remove(at: index)
+    mutating func removeNote(note: Note) {
+        self.notes.removeAll { (n) -> Bool in
+//            print("\(n.index) == \(note.index)")
+            return n.index == note.index
+        }
+        updateCurrent()
+    }
+    
+}
+
+
+extension Folder{
+    func updateCurrent() {
+        Folder.folders[self.index] = self
     }
 }

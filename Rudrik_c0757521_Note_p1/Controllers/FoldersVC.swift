@@ -13,9 +13,6 @@ class FoldersVC: UIViewController {
     //  MARK: OUTLETS
     @IBOutlet weak var tvFolders: UITableView!
     @IBOutlet weak var navigationBar: UINavigationItem!
-    
-    //  MARK: VARIABLES
-    var sections : [String] = ["Folders"]
         
     //  MARK: viewDidLoad
     override func viewDidLoad() {
@@ -29,8 +26,6 @@ class FoldersVC: UIViewController {
         tvFolders.dataSource = self
         tvFolders.backgroundColor = #colorLiteral(red: 0.127715386, green: 0.1686877555, blue: 0.2190790727, alpha: 0.9254236356)
         tvFolders.rowHeight = 50
-        navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationBar.title = sections[0]
         initFolderCell()
     }
     
@@ -57,17 +52,12 @@ class FoldersVC: UIViewController {
         alert.addAction(UIAlertAction(title: "Add Item", style: .default, handler: { (act) in
             if let name = alert.textFields?.first?.text{
                 if !name.isEmpty{
-                    switch self.navigationBar.title {
-                    case self.sections[0]:
-                        if (Folder.folders.filter { (f) -> Bool in
-                            f.folderName == name
-                        }.isEmpty) {
-                            Folder.folders.append(Folder(folderName: name))
-                        }else{
-                            showPopup(vc: self, title: "Name Taken", msg: "Please choose a different name", btnText: "OK")
-                        }
-                    default:
-                        return
+                    if (Folder.folders.filter { (f) -> Bool in
+                        f.folderName == name
+                    }.isEmpty) {
+                        Folder.folders.append(Folder(folderName: name, index: Folder.folders.count))
+                    }else{
+                        showPopup(vc: self, title: "Name Taken", msg: "Please choose a different name", btnText: "OK")
                     }
                     
                     self.tvFolders.reloadData()
@@ -75,8 +65,8 @@ class FoldersVC: UIViewController {
             }
         }))
         
-        alert.actions[0].setValue(#colorLiteral(red: 0.127715386, green: 0.1686877555, blue: 0.2190790727, alpha: 0.9254236356), forKey: "titleTextColor")
-        alert.actions[1].setValue(UIColor.black, forKey: "titleTextColor")
+        alert.actions[0].setValue(UIColor.red, forKey: "titleTextColor")
+        alert.actions[1].setValue(#colorLiteral(red: 0.127715386, green: 0.1686877555, blue: 0.2190790727, alpha: 0.9254236356), forKey: "titleTextColor")
         present(alert, animated: true, completion: nil)
     }
     
@@ -91,11 +81,14 @@ class FoldersVC: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell : FolderCell = sender as? FolderCell {
-            let folder = Folder.folders[tvFolders.indexPath(for: cell)!.row]
-                if let notesVC = segue.destination as? NotesVC {
+            let folder = Folder.folders.filter { (f) -> Bool in
+                f.folderName == cell.textLabel?.text
+            }.first
+            
+            if let notesVC = segue.destination as? NotesVC {
                     notesVC.delegate = self
                     notesVC.currentFolder = folder
-                }
+            }
         }
     }
     
@@ -106,17 +99,6 @@ class FoldersVC: UIViewController {
 
     //  MARK: - TABLE VIEW DELEGATE & DATASOURCES
 extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
-    
-    //    MARK: Sections
-    func numberOfSections(in tableView: UITableView) -> Int {
-        sections.count
-    }
-    
-    /*
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
-    }
-    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Folder.folders.count
@@ -129,7 +111,6 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
             let folder : Folder = Folder.folders[indexPath.row]
             
             if indexPath.section == 0{
-                cell.tag = indexPath.section
                 cell.textLabel?.text = folder.folderName
                 cell.detailTextLabel?.text = String(folder.notes.count)
             }
@@ -147,9 +128,18 @@ extension FoldersVC : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let temp = Folder.folders[sourceIndexPath.row]
+        let i = sourceIndexPath.row  // SourceFolder index
+        
+        //  interchange folders
         Folder.folders[sourceIndexPath.row] = Folder.folders[destinationIndexPath.row]
         Folder.folders[destinationIndexPath.row] = temp
-        tvFolders.reloadData()
+
+        //  interchange indexes
+        Folder.folders[sourceIndexPath.row].index = i
+        Folder.folders[destinationIndexPath.row].index = destinationIndexPath.row
+        
+        self.tvFolders.moveRow(at: sourceIndexPath, to: destinationIndexPath)
+        
     }
     
     //  MARK: ON DELETE ROW

@@ -10,7 +10,7 @@ import Foundation
 
 struct Note : CustomStringConvertible {
     var noteName : String
-    
+    var index : Int?
     var description: String{
         return noteName
     }
